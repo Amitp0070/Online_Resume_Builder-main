@@ -1,0 +1,72 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    h1 {
+        text-align: center;
+        font-family: century;
+    }
+
+    .card-container {
+        margin-top: 2rem;
+        margin-left: .5rem;
+    }
+
+    .template-card {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 20px;
+        /* border: 0 1px 5px rgb(15, 157, 182);
+        box-shadow: 0 0 10px 1px rgb(15, 157, 182); */
+    }
+
+    .template-card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .template-card .btn {
+        position: absolute;
+        bottom: 20px;
+        margin-bottom: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-weight: bold;
+        background-color: rgb(15, 157, 182);
+        text-align: center;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: all 0.5s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .template-card .btn:hover {
+        background-color: #0b9ea9;
+    }
+
+    .template-card:hover .btn {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+
+<h1>RESUME TEMPLATES</h1>
+<div class="card-container">
+    {% for template in templates %}
+    <div class="template-card">
+        <img src="{{ template.image.url }}" alt="{{ template.name }}">
+        <a class="btn" href="{% url 'resume' %}">Create Resume</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

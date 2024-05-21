@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <!-- Add more profile fields as needed -->
+    <a href="{% url 'view_profile' %}"></a>
+</body>
+</html>
+{% endblock body %}

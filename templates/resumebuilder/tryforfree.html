@@ -1,0 +1,133 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<style>
+    .steps {
+        width: 100%;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+    }
+
+    .steps-name {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 2rem;
+        font-size: 20px;
+    }
+
+    .number {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: rgb(26, 145, 240);
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 20px;
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+        margin-right: 12px;
+        transition: background-color 0.2s ease 0s, color 0.2s ease 0s;
+    }
+
+    .card-container {
+        margin-top: 2rem;
+        margin-left: .5rem;
+    }
+
+    .template-card {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 20px;
+        /* border: 0 1px 5px rgb(15, 157, 182);
+        box-shadow: 0 0 10px 1px rgb(15, 157, 182); */
+    }
+
+    .template-card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .template-card .btn {
+        position: absolute;
+        bottom: 20px;
+        margin-bottom: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-weight: bold;
+        background-color: rgb(15, 157, 182);
+        text-align: center;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: all 0.5s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .template-card .btn:hover {
+        background-color: #0b9ea9;
+    }
+
+    .template-card:hover .btn {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+{% endblock css %}
+
+
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try For Free</title>
+</head>
+
+<body>
+    <div class="steps">
+        <div class="steps-name">
+            <div class="number">1</div>
+            <div class="name">Choose Template</div>
+        </div>
+        <div class="steps-name">
+            <div class="number">2</div>
+            <div class="name">Enter your details</div>
+        </div>
+        <div class="steps-name">
+            <div class="number">3</div>
+            <div class="name">Download resume</div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        {% for template in templates %}
+        <div class="template-card">
+            <img src="{{ template.image.url }}" alt="{{ template.name }}">
+            <a class="btn" href="{% url 'resume' %}">Create Resume</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
+{% endblock body %}
