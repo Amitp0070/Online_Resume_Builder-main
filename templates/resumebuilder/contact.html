@@ -1,0 +1,186 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+  /* Add your CSS styles here */
+  #contact {
+    width: 100%;
+    height: auto;
+    color: black;
+    padding: 50px 0;
+    text-align: center;
+  }
+
+  #contact h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: century;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+
+  .contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    padding-left: 15rem;
+    margin: 0 auto;
+  }
+
+  .contact-form {
+    flex-basis: 40%;
+    padding: 20px;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .send-button {
+    width: 10rem;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(15, 157, 182);
+    margin-right: 17rem;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  .send-button:hover {
+    padding-right: 24px;
+    padding-left: 8px;
+  }
+
+  .direct-contact-container {
+    flex-basis: 45%;
+    padding: 20px;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-list li {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .contact-list i {
+    margin-right: 10px;
+  }
+
+  .contact-list .list-item span a {
+    color: black;
+  }
+
+
+  .social-media .social-media-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    margin-left: 4rem;
+    margin-top: 1rem;
+  }
+
+  .social-media .social-media-list li a {
+    margin: 0 10px;
+  }
+
+  .social-media .social-media-list a {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  .social-media .social-media-list a:hover {
+    color: #0c7f93;
+  }
+
+  .copyright {
+    margin-right: 9rem;
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+</style>
+{% endblock css %}
+
+{% block js %}
+<script>
+  function showAlert() {
+    alert("Thank you for contacting us! We will get back to you shortly.");
+  }
+</script>
+{% endblock js %}
+
+
+{% block body %}
+<section id="contact">
+  <h1>Contact</h1>
+  <div class="contact-wrapper ">
+    <!-- Left contact page -->
+    <form method="post" action="{% url 'saveenquiry' %}" role="form" novalidate class="bv-form contact-form"
+      id="contact-form" onsubmit="showAlert()">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="" required>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="" required>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control textarea-control" rows="5" placeholder="Message" name="message"
+          required></textarea>
+      </div>
+      <button class="send-button" type="submit">Send</button>
+    </form>
+
+    <!-- Right contact page -->
+    <div class="direct-contact-container">
+      <ul class="contact-list">
+        <li class="list-item">
+          <i class="fa fa-map-marker fa-2x"></i>
+          <span>Jaunpur, UP</span>
+        </li>
+        <li class="list-item">
+          <i class="fa fa-phone fa-2x"></i>
+          <span>
+            <a href="tel:7080735344" title="Give me a call">+91 70807 35344</a>
+          </span>
+        </li>
+        <li class="list-item">
+          <i class="fa fa-envelope fa-2x"></i>
+          <span>
+            <a href="mailto:vanshsrivastavjnp@gmail.com" title="Send me an email">vanshsrivastavjnp@gmail.com</a>
+          </span>
+        </li>
+      </ul>
+      <div class="social-media">
+        <ul class="social-media-list">
+          <li><a href="https://github.com/VanshSrivastav21-VS"><i class="fa-brands fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/vansh-srivastav-24550828b/"><i class="fa-brands fa-linkedin"></i></a>
+          </li>
+          <li><a href="https://www.instagram.com/vanshrivastav._.4u?igsh=eXd0NXh6MndnZ2Q1"><i
+                class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+    </div>
+  </div>
+
+</section>
+{% endblock body %}
